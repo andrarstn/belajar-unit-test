@@ -6,12 +6,19 @@ use PHPUnit\Framework\TestCase;
 
 class CounterTest extends TestCase
 {
+    private Counter $counter;
+
+    protected function setUp(): void
+    {
+        $this->counter = new Counter();
+        echo "Membuat Counter" . PHP_EOL;
+    }
+
     public function testCounter()
     {
-        $counter = new Counter();
-        $counter->increment();
+        $this->counter->increment();
         
-        $this->assertEquals(1, $counter->getCounter());
+        $this->assertEquals(1, $this->counter->getCounter());
     }
 
     /** 
@@ -20,22 +27,20 @@ class CounterTest extends TestCase
 
     public function increment()
     {
-        $counter = new Counter();
-        $counter->increment();
-        $counter->increment();
-        $counter->increment();
+        $this->counter->increment();
+        $this->counter->increment();
+        $this->counter->increment();
         
-        $this->assertEquals(3, $counter->getCounter());
+        $this->assertEquals(3, $this->counter->getCounter());
     }
 
     public function testFirst() : Counter 
     {
-        $counter = new Counter();
-        $counter->increment();
+        $this->counter->increment();
 
-        $this->assertEquals(1, $counter->getCounter());
+        $this->assertEquals(1, $this->counter->getCounter());
 
-        return $counter;
+        return $this->counter;
     }
 
     /**
@@ -46,5 +51,18 @@ class CounterTest extends TestCase
         $counter->increment();
 
         $this->assertEquals(2, $counter->getCounter());
+    }
+
+    protected function tearDown(): void
+    {
+        echo "Tear Down". PHP_EOL;
+    }
+
+    /**
+     * @after
+     */
+    protected function after(): void
+    {
+        echo "After". PHP_EOL;
     }
 }

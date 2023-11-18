@@ -1,2 +1,2 @@
 ## Run Unit Test
-`composer test tests/fileTest.php`
+`composer test fileTest.php` (All unit test file must in folder tests)
