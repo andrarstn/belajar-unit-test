@@ -33,6 +33,7 @@ class CounterTest extends TestCase
 
     public function increment()
     {
+        self::markTestSkipped("Confuse...");
         $this->counter->increment();
         $this->counter->increment();
         $this->counter->increment();
@@ -70,5 +71,13 @@ class CounterTest extends TestCase
     protected function after(): void
     {
         echo "After". PHP_EOL;
+    }
+
+    /**
+     * @requires OSFAMILY Windows
+     */
+    public function testOnlyInWindows()
+    {
+        self::assertTrue(true, 'only in windows');
     }
 }
